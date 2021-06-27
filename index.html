@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/613a25ab47.js" crossorigin="anonymous"></script>    
+    <script src="./js/article.js"></script> 
+    <title>Orinico</title>
+</head>
+<body>
+    <header>
+        <div class="container-fluid navbar navbar-expand">
+            <a href="#" class="navbar-brand">
+               <img src="logo.png" alt="logo" title="orinico"/>
+            </a>
+               <div class="dropdown" id="articles">
+                   <form class="form-inline">
+                    <button class="btn btn-outline-default dropdown-toggle" data-toggle="dropdown" type="button">
+                         <span class="caret"></span>  
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="index.html">Zurss 50S</a></li>
+                        <li><a href="index.html">Hirsch 400DTS</a></li>
+                        <li><a href="index.html">Franck JS 105</a></li>
+                        <li><a href="index.html"> Kuros TTS</a></li>
+                        <li><a href="index.html"> Katatone</a></li>
+                    </ul>
+                    <input class="inp" type="Recherche" placeholder="Recherche" aria-label="Recherche">
+                  </form>
+               </div>
+          <div id="shoping">
+              <a href="panier.html"><i class="fas fa-cart-plus"></i> Panier</a>
+          </div>
+        </div>
+    </header>
+    
+    <main>
+        <h1 id="bienvenue">Bienvenue chez orinoco !</h1>
+    </main>
+
+    <section>
+           <div id="produit"></div>
+    </section>
+
+    <footer>
+      <div class=" footer container_fluid">
+        <div id="blok1" class="col-md-6">
+           <ul class="list-inline">
+               <li class="list-inline-item">
+                 <a href="https://www.facebook.com"><i class="fab fa-facebook"></i></a>
+               </li>
+               <li class="list-inline-item">
+                <a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
+               </li>
+               <li class="list-inline-item">
+                <a href="https://twitter.com"><i class="fab fa-twitter-square"></i></a>
+               </li>
+               <li class="list-inline-item">
+                <a href="https://www.linkedin.com"><i class="fab fa-linkedin"></i></a>
+               </li>
+           </ul>
+        </div>
+        <div id="blok2" class="col-md-6">
+            <ul class="list-inline">
+                <span class="span">Moyens de paiement Orinico:</span>
+                <li class="list-inline-item"><i class="fab fa-cc-mastercard"></i></li>
+                <li class="list-inline-item"><i class="fab fa-cc-visa"></i></li>
+                <li class="list-inline-item"><i class="fab fa-cc-paypal"></i></li>
+                <li class="list-inline-item"><i class="fab fa-cc-apple-pay"></i></li>
+            </ul>
+        </div>
+      </div>
+    </footer>
+    <script>
+        getAllArticle();
+    </script>
+</body>
+</html>

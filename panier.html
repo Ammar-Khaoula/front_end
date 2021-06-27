@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panier</title>
+    
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/613a25ab47.js" crossorigin="anonymous"></script> 
+    <script src="./js/article.js"></script> 
+</head>
+<body>
+    <header>
+        <div class="container navbar navbar-expand">
+            <a href="#" onclick="history.go(-1);"><i class="fas fa-arrow-left" id="retour"></i></a>
+            <a href="#" class="navbar-brand">
+               <img src="logo.png" alt="logo" title="orinico"/>
+            </a>
+          <div id="shoping">
+              <a href="panier.html"><i class="fas fa-cart-plus"></i> Panier</a>
+          </div>
+        </div>
+    </header>
+    <section>
+        <div id="content">
+        </div>
+        <button id="suprimer" class="btn2">suprimer</button>
+        <div class="priceFinal">Total de votre panier:</div>
+                      <!--formulaire-->
+        <form class="container" id="formulaire" method="GET" action="confirmation.html">
+          <table>
+            <h1>passez commande</h1>
+            <tr class="form-group"> 
+              <td><label for="nom">Nom:</label></td>
+              <td><input type="text" minlength="3" id="nom"  placeholder="nom" required pattern="[A-Za-z]+"></td>
+            </tr>
+            <tr class="form-group">
+                <td><label for="prenom">Prenom:</label></td>
+                <td><input type="text" minlength="3" id="prenom" placeholder="Prenom" required pattern="[A-Za-z]+"></td>
+            </tr>
+            <tr class="form-group">
+                <td><label for="adresse">Adresse:</label></td>
+                <td><input type="text" minlength="3" id="adresse" placeholder="Adresse" required></td>
+            </tr>
+            <tr class="form-group">
+                <td><label for="ville">ville:</label></td>
+                <td><input type="text" id="ville" placeholder="ville"  required pattern="[A-Za-z]+"></td>
+            </tr>
+            <tr class="form-group">
+                <td><label for="email">Email:</label></td>
+                <td><input type="email" minlength="3" id="email" placeholder="name@example.com" required></td>
+            </tr>
+            <tr>
+              <div class="form-group">
+                 <td> <button type="submit" class="btn2" id="btnComende">valider votre commande!</button></td>
+              </div>
+            </tr>
+          </table>
+        </form>
+    </section>
+
+    <footer>
+      <div class=" footer container_fluid">
+        <div id="blok1" class="col-md-6">
+           <ul class="list-inline">
+               <li class="list-inline-item">
+                 <a href="https://www.facebook.com"><i class="fab fa-facebook"></i></a>
+               </li>
+               <li class="list-inline-item">
+                <a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
+               </li>
+               <li class="list-inline-item">
+                <a href="https://twitter.com"><i class="fab fa-twitter-square"></i></a>
+               </li>
+               <li class="list-inline-item">
+                <a href="https://www.linkedin.com"><i class="fab fa-linkedin"></i></a>
+               </li>
+           </ul>
+        </div>
+        <div id="blok2" class="col-md-6">
+            <ul class="list-inline">
+                <span class="span">Moyens de paiement Orinico:</span>
+                <li class="list-inline-item"><i class="fab fa-cc-mastercard"></i></li>
+                <li class="list-inline-item"><i class="fab fa-cc-visa"></i></li>
+                <li class="list-inline-item"><i class="fab fa-cc-paypal"></i></li>
+                <li class="list-inline-item"><i class="fab fa-cc-apple-pay"></i></li>
+            </ul>
+        </div>
+      </div>
+    </footer>
+    <script src="./js/panier.js"></script>
+</body>
+</html>
