@@ -1,30 +1,24 @@
-//------Recuperé le panier-----
-/*let panierFinal = document.querySelector("#content");
-let prixFinal   = document.querySelector("#priceFinal");
-let basketFinal = recupererPanier();
-if (basketFinal != null) {
-    basketFinal.forEach((objet) => {
-        panierFinal.innerHTML += `
-        <div>${objet.name}</div>
-        `
-    });
-}*/
-
-
 function recupererPanier() {
     let basketArt = JSON.parse(localStorage.getItem("basketArt"));
    // for (commande in basketArt) {
+    //basket est true
     if (basketArt) {
         document.querySelector("#content").innerHTML += `
-           <img src = ${basketArt.imageArticle} width="100px"/>
-            <p>Nom : ${basketArt.nom}</p>
-            <p>Lentilles : ${basketArt.lentilles}</p>
-            <p>Quantiter : ${basketArt.quantiter}</p>
-            <p>Prix : ${basketArt.prix}</p>
+          <div class="photoDeProduit panier" id="basketArt">
+              <img class="image" src = ${basketArt.imageArticle} />
+              <h2 class="nom">${basketArt.nom}</h2>
+              <p>Options : ${basketArt.lentilles}</p>
+              <p>Quantiter : ${basketArt.quantiter}</p>
+              <p>Prix : ${basketArt.prix*basketArt.quantiter}</p>
+              <button id="suprimer" class="btn2">suprimer</button>
+          </div>
     `
     } else {
         document.querySelector("#content").innerHTML += `
-        <img src ="panier.jpg" width="100px"/>
+        <div class="photoDeProduit panier">
+        <img class="panierVide" src ="panier.png"/>
+        <p> votre panier est vide</p>
+        </div>
  `
     }
         //document.querySelector("#content").innerHTML += commande+": "+ basketArt[commande]+"<br/>";
@@ -33,10 +27,14 @@ function recupererPanier() {
 }
 recupererPanier();
 
+//suprimer l'article de panier
 let suprimer = document.querySelector("#suprimer");
 if (suprimer) {
-    suprimer.onclick = () => {
-        localStorage.clear();
+    suprimer.onclick = (e) => {
+        e.preventDefault;
+        //vider le localstorage
+        localStorage.removeItem("basketArt");
+        //alert("le panier est vide");
     }
 }
 

@@ -89,25 +89,26 @@ function getOneArticle ()
         txt += '</div>';
         photoProduit.innerHTML += txt;
         prixInitial = produit.price;//appeler le prix initial
-
-        //----panier
-        let btnPanier = document.querySelector("#panierBtn");
-if (btnPanier) {
-    btnPanier.addEventListener("click", () => {
-          //------Ajouter de donnée au localsrorage 'panier'---
-            let basket = localStorage.getItem("basketArt");
-            let cs = document.querySelector("#lensSelect");
-        const donneArt = {
-              imageArticle: produit.imageUrl,
-              nom: produit.name,
-              lentilles:cs.options[cs.selectedIndex].text,
-              quantiter: quantitDeProduit.value,
-              prix: produit.price
-           }
-           localStorage.setItem("basketArt", JSON.stringify(donneArt)); 
-    });
-}
-            
+                    
+                      //-------panier-------
+          //let btnPanier = document.querySelector("#panierBtn");
+          //if (btnPanier) {
+            panierBtn.addEventListener("click", () => {
+                    //------Ajouter de donnée au localsrorage 'panier'---
+                      let basket = localStorage.getItem("basketArt");
+                      let cs = document.querySelector("#lensSelect");
+                  const donneArt = {
+                        _id: produit._id,
+                        imageArticle: produit.imageUrl,
+                        nom: produit.name,
+                        lentilles:cs.options[cs.selectedIndex].text,
+                        quantiter: quantitDeProduit.value,
+                        prix: produit.price
+                     }
+                     
+                     localStorage.setItem("basketArt", JSON.stringify(donneArt)); 
+              });
+         // }          
            
 })
     .catch(function(err) {

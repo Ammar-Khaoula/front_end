@@ -50,6 +50,26 @@ header img{
         height: 40px;
     } 
 }
+@media screen and (min-width: 768px){
+    header img{
+        width: 120px;
+        height: 70px;
+        margin-right: auto;
+    } 
+    #articles{
+        margin-left: 150px;
+    }
+    #shoping{
+        margin-left: 200px;
+    }
+    .fas{
+        font-size: 30px;
+    } 
+    .inp{
+        width: 100px;
+        height: 40px;
+    } 
+}
 /*header panier*/
 #retour{
     font-size: 35px;
@@ -82,24 +102,34 @@ header img{
     animation-timing-function: ease;
     animation-direction:alternate;
 }
-@keyframes couleur {
-    0%{
-        color: #000;
-      
-    }
-    50%{
-     color:blueviolet;
-     font-size: 30px;
-    }
-    100%{
-        color: #E09706;
-    }
-}
+
 @media screen and (max-width: 768px){
     #bienvenue{
         text-align: center;
         margin: 80px 40px;
         font-size: 18px;
+        animation-name: couleur;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease;
+        animation-direction:alternate;
+    }
+    @keyframes couleur {
+        0%{
+            color: #000;
+          
+        }
+        100%{
+            color: rgb(174, 92, 250);
+            font-size: 21px;
+        }
+    }
+}
+@media screen and (min-width: 768px){
+    #bienvenue{
+        text-align: center;
+        margin: 80px 200px;
+        font-size: 20px;
         animation-name: couleur;
         animation-duration: 2s;
         animation-iteration-count: infinite;
@@ -124,13 +154,12 @@ header img{
     border-radius: 20px;
     box-shadow: 5px 5px 26px 0px rgba(0, 0, 0, 0.89);
     background:#faf3f9; 
-    margin: 30px;
-    width: 400px;
-    height: 450px;
-    padding-top: 20px;    
+    margin: 30px 10px;
+    width: 760px;
+    height: 450px;    
 }
 .menu-01 img{
-    width:340px;
+    width:400px;
     height:250px;
     border-radius:5px;
     box-shadow: inset 0 0 10px #000000;
@@ -149,31 +178,32 @@ header img{
     font-style: italic;
     font-size: 30px;
     color: blueviolet;
-    padding-left: 20px;
+    padding-left: 70px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 .price{
     font-size: 25px;
     font-weight: bold;
     color: #fbbe42;
-   padding-left: 25px;
+    padding-left: 500px;
+    position: relative;
+    bottom: 150px;
 }
 .menu-01 a{
     text-decoration: underline;
     font-size: 30px;
     font-weight: bolder;
     color: blueviolet;
-    padding-left: 20px;
-    padding-top: 30px;
+    padding-left: 470px;
+    position: relative;
+    bottom: 100px;
 }
 .menu-01 a:hover{
     color:#E09706;
 }
 @media screen and (max-width: 768px){
-    .menu-01{
-        border: 0px black solid;
-        border-radius: 20px;
-        box-shadow: 5px 5px 26px 0px rgba(0, 0, 0, 0.89);
-        background:#faf3f9; 
+    .menu-01{ 
         margin: 20px 5px;
         width: 350px;
         height: 450px;
@@ -182,41 +212,26 @@ header img{
     .menu-01 img{
         width:300px;
         height:200px;
-        border-radius:5px;
-        box-shadow: inset 0 0 10px #000000;
-        cursor: pointer;
         margin-bottom: 15px;
     }
-    .menu-01 img:hover{
-        transform: scaleX(1);
-        box-shadow: 5px 5px 26px 0px rgba(46, 13, 54, 0.89);
-    }
     .name{
-        font-family: 'Dancing Script', cursive;
-        cursor: pointer;
-        font-weight: bolder;
-        font-style: italic;
-        font-size: 30px;
+        font-size: 25px;
         color: blueviolet;
         padding-left: 20px;
     }
     .price{
-        font-size: 25px;
-        font-weight: bold;
-        color: #fbbe42;
-       padding-left: 25px;
+        font-size: 20px;
+        padding-left: 25px;
+        position: relative;
+        top: 10px;
     }
     .menu-01 a{
-        text-decoration: underline;
-        font-size: 30px;
-        font-weight: bolder;
-        color: blueviolet;
+        font-size: 25px;
         padding-left: 20px;
         padding-top: 30px;
+        position: relative;
+        top: 15px;
     }
-    .menu-01 a:hover{
-        color:#E09706;
-    }  
 }
 
              /*secion produit*/
@@ -304,14 +319,36 @@ input{
     height: 60px;
 }
 }
+@media screen and (min-width: 768px){
+    .descriptionProduit{
+        display: flex;
+        flex-direction: column;
+    }
+    .photoDeProduit{
+        padding: 25px;
+        margin-left: 30px;
+        width: 650px;
+    }
     
+    .image{
+        width: 550px;
+        height: 360px;
+        padding-top: 5px;
+        padding-left: 35px;
+    }
+   
+}
+      
 
-/*secion panier*/
+               /*secion panier*/
 #formulaire{
     border: 4mm ridge rgba(248, 203, 244, 0.6);
     width: 450px;
     margin: 40px auto;
     border-radius: 15px;
+}
+#basketArt{
+   height: 660px;
 }
 #formulaire h1{
     border: 5px rgb(202, 157, 245) solid;
@@ -350,7 +387,16 @@ input{
     margin-top: 30px;
     margin-bottom: 30px;
 }
-/*mobile-panier*/
+.panier{
+    text-align: center;
+    margin-left: 350px;
+}
+.panierVide{
+    width: 550px;
+    height:450px ;
+    padding-top: 70px;
+}
+            /*mobile-panier*/
 @media screen and (max-width: 768px){
 #formulaire{
     width: 350px;
@@ -369,8 +415,41 @@ input{
     width: 200px;
     font-size: 15px;
 }
+.panier{
+    text-align: center;
+    margin-left: 10px;
 }
-/*footer*/
+}
+         /*tablette panier*/
+@media screen and (min-width: 768px){
+    #formulaire{
+        width: 350px;
+    }
+    .panier{
+        height: 580px;
+        position: relative;
+        left: 100px;
+    }
+    #formulaire h1{
+        margin: 40px 5px;
+        padding-left: 35px;
+        font-size: 25px;
+    }
+    .form-group input{
+        width: 180px;
+        position: relative;
+        right: 170px;
+    }
+    #btnComende{
+        width: 200px;
+        font-size: 15px;
+    }
+    .panier{
+        text-align: center;
+        margin-left: 10px;
+    }
+}
+          /*footer*/
 footer{
    background: #F3E9F1;
 }
@@ -402,6 +481,13 @@ li{
     .fab{
         font-size: 25px;
         padding: 10px;
+    }
+}
+@media screen and (min-width: 768px){
+
+    .fab{
+        font-size: 35px;
+        padding: 20px;
     }
 }
 
