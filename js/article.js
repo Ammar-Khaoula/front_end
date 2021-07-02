@@ -91,37 +91,43 @@ function getOneArticle ()
         prixInitial = produit.price;//appeler le prix initial
                     
                       //-------panier-------
-          //let btnPanier = document.querySelector("#panierBtn");
-          //if (btnPanier) {
-            panierBtn.addEventListener("click", () => {
-                    //------Ajouter de donnée au localsrorage 'panier'---
-                      let basket = localStorage.getItem("basketArt");
-                      let cs = document.querySelector("#lensSelect");
-                  const donneArt = {
-                        _id: produit._id,
-                        imageArticle: produit.imageUrl,
-                        nom: produit.name,
-                        lentilles:cs.options[cs.selectedIndex].text,
-                        quantiter: quantitDeProduit.value,
-                        prix: produit.price
-                     }
-                     
-                     localStorage.setItem("basketArt", JSON.stringify(donneArt)); 
-              });
-         // }          
-           
-})
-    .catch(function(err) {
+        //--ecoute le boutton--
+        panierBtn.addEventListener("click", () => {
+            let cs = document.querySelector("#lensSelect");
+            const donneArt = {
+                _id: produit._id,
+                imageArticle: produit.imageUrl,
+                nom: produit.name,
+                lentilles: cs.options[cs.selectedIndex].text,
+                quantiter: quantitDeProduit.value,
+                prix: produit.price / 100,                
+            };
+    //-----------------------local storage-----------------------//
+    //déclarer la variable "ajoutLocalStorage" dans localstorage
+        let ajoutLocalStorage = JSON.parse(localStorage.getItem("produit"));
+            
+    //--Fonction ajoute un produit au localeStorage
+        const ajoutProduitLocalStorage = () => {
+            ajoutLocalStorage.push(donneArt);
+            localStorage.setItem("produit", JSON.stringify(ajoutLocalStorage));
+        };
+    //s'il ya deja de produits d'enregistré dans le local storage
+        if (ajoutLocalStorage) {
+            ajoutProduitLocalStorage();
+        }
+            
+    //s'il n'ya pas deja de produits d'enregistré dans le local storage
+        else {
+            ajoutLocalStorage = [];
+            ajoutProduitLocalStorage();
+        }
+        });     
+    })
         
-    });
+.catch(function(err) {
+        
+});
 }
-/*function setPanier() {
-    if (localStorage.getItem("basketArt") == null) {
-        document.querySelector("#content").innerHTML += `
-        <h2>bonjour</h2>
-        `
-    }
-}*/
      //calculer les prix
 function calculPrix() {
 
