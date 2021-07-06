@@ -20,9 +20,11 @@ else {
         <div class="photoDeProduit panier" id="basketArt">
               <img class="image" src = ${ajoutLocalStorage[i].imageArticle} />
               <h2 class="nom">${ajoutLocalStorage[i].nom}</h2>
-              <p>Options : ${ajoutLocalStorage[i].lentilles}</p>
-              <p>Quantité : ${ajoutLocalStorage[i].quantiter}</p>
-              <p>Prix : ${ajoutLocalStorage[i].prix*ajoutLocalStorage[i].quantiter} €</p>
+              <table>
+              <tr><td class="style">Options : </td><td class="style">${ajoutLocalStorage[i].lentilles}</td></tr>
+              <tr><td class="style">Quantité : </td><td class="style">${ajoutLocalStorage[i].quantiter}</td></tr>
+              <tr><td class="style">Prix : </td><td class="style">${ajoutLocalStorage[i].prix} €</td></tr>
+              </table>
               <button id="suprimer" class="btn2 btnSupprimer">supprimer</button>
           </div>
         `;
@@ -34,7 +36,6 @@ else {
 
 // selection tous les bouton suprimer les article des pagnier
 let btn_suprimer = document.querySelectorAll(".btnSupprimer");
-console.log(btn_suprimer);
 for (let j = 0; j < btn_suprimer.length; j++){
     btn_suprimer[j].addEventListener("click", (e) => {
         e.preventDefault();
@@ -50,6 +51,7 @@ for (let j = 0; j < btn_suprimer.length; j++){
         window.location.href = "panier.html";
     });
 }
+
 //------------------CALCULER LES PRIX DES PRODUITS TOTALES-----
 //déclaration de variable pour mettres les prixqui sont presente dans le panier
 let prixTotaleDePanier = [];
@@ -62,70 +64,93 @@ for (let p = 0; p < ajoutLocalStorage.length; p++){
 //--ADITIONNER LE PRIX
 const reducer = (accumulator, currenValue) => accumulator + currenValue;
 const prixPanier = prixTotaleDePanier.reduce(reducer, 0);
-console.log(prixPanier);
 //--------AFICHIER LE PRIX SUR PAGE WEB
 const affichePrix = `
 <div class='affochePrix'>le prix total est : ${prixPanier} €</div>
 `
 basketArt.insertAdjacentHTML("beforeend", affichePrix);
-//function recupererPanier() {
-/*let basketArt = JSON.parse(localStorage.getItem("data"));
-   // for (commande in basketArt) {
-    //basket est true
-if (basketArt != null) {
-    document.querySelector("#content").innerHTML +=
-         `
-          <div class="photoDeProduit panier" id="basketArt">
-              <img class="image" src = ${basketArt.imageArticle} />
-              <h2 class="nom">${basketArt.nom}</h2>
-              <p>Options : ${basketArt.lentilles}</p>
-              <p>Quantité : ${basketArt.quantiter}</p>
-              <p>Prix : ${basketArt.prix*basketArt.quantiter}</p>
-              <button id="suprimer" class="btn2">supprimer</button>
-          </div>
-    `
-    } else {
-        document.querySelector("#content").innerHTML += `
-        <div class="photoDeProduit panier">
-        <img class="panierVide" src ="panier.png"/>
-        <p> votre panier est vide</p>
-        </div>
- `
+
+  //-----------Validation de formulaire----------
+//on cible le bouton du formulaire et attache une fonction 
+document.querySelector('#formulaire').addEventListener("click", function () {
+    var valid = true;
+    for (let input of document.querySelectorAll(".form input")) {
+
+        valid &= input.reportValidity();
+        if (!valid) {
+            break;
+        }
     }
-        //document.querySelector("#content").innerHTML += commande+": "+ basketArt[commande]+"<br/>";
-   // }
-        
-//}
-//recupererPanier();
 
-//suprimer l'article de panier
-let suprimer = document.querySelector("#suprimer");
-if (suprimer) {
-    suprimer.onclick = (e) => {
-        e.preventDefault;
-        //vider le localstorage
-        localStorage.removeItem("basketArt");
-        //window.reload();
-        //alert("le panier est vide");
+});
+    /*************VALIDATION FORMULAIRE******************/
+
+const lastname = document.getElementById('nom');
+const firstname = document.getElementById('prenom');
+const address = document.getElementById('adresse');
+const city = document.getElementById('ville');
+const mail = document.getElementById('email');
+
+const form = document.querySelector("#formulaire");
+form.addEventListener("submit", (e) => {
+    e.preventDefault()
+    if (ajoutLocalStorage == 0) {
+        alert("votre panier est vide");
     }
-}
+    else {
+        //----cameras en tant que tableau à envoyer en POST
+        const products = [];
 
+        ajoutLocalStorage.forEach((camera) => {
+            products.push(camera._id);
+            console.table(products)
+        });
+         // utilisateur à envoyer en objet en POST
+         let contact = {
+            firstName: firstname.value,
+            lastName: lastname.value,
+            address: address.value,
+            city: city.value,
+            email: mail.value,
+        };
+        localStorage.setItem("contact", JSON.stringify(contact));
+        // crée donnees comme objet contact + tableau products
+        const donnees = { contact, products };
+         // en-têtes pour la requête (dire qu'elle est POST et non GET)
+         const options = {
+            method: "POST",
+            body: JSON.stringify(donnees),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        console.log(donnees)
+         // la requête POST en elle-même
+         fetch(" https://projet5-backend.herokuapp.com/api/cameras/order", options)
+         // reçoit les données du back
+         .then(response => { // me renvoie un premiere prommesse
+             if (response.ok) {
+                 return response.json() // Si response ok, retourne un objet json
+             } else {
+                 Promise.reject(response.status); // sinon, me retroune la cause de l'echec
+             };
+         })
 
-//confirmation le commande-------
-let btnComfirme = document.querySelector("#btnComende");
-if (btnComfirme) {
-    btnComfirme.addEventListener("click", () => {
-        //stoker le donnée
-        localStorage.setItem("prenom", document.querySelector("#prenom").value);
+         // traitement pour l'obtention du numéro de commmande
+         .then((dataPost) => {
+             const orderId = dataPost.orderId;
 
-    });
-}
-function confirmation() {
-        //recuperer le donnée
-        const contact = localStorage.getItem("prenom");
-        console.log(contact);
-        const addPrenom = document.getElementById('formName');
-        console.log("prenom : " + addPrenom);
-        addPrenom.innerHTML = contact;
-        console.log(contact);
-}*/
+             if (orderId == undefined) {
+                 alert("Tous les champs doivent êtres remplis")
+             } else {
+                 window.location.href = `confirmation.html?ncomm=${orderId}`;
+             }
+
+         })
+
+         .catch((error) => {
+             alert(error);
+         });
+    }
+});
+

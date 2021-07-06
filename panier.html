@@ -18,7 +18,7 @@
     <header>
         <div class="container navbar navbar-expand">
             <a href="#" onclick="history.go(-1);"><i class="fas fa-arrow-left" id="retour"></i></a>
-            <a href="#" class="navbar-brand">
+            <a href="index.html" class="navbar-brand">
                <img src="logo.png" alt="logo" title="orinico"/>
             </a>
           <div id="shoping">
@@ -28,30 +28,34 @@
     </header>
     <section>
         <div id="container"></div>
-        <div class="priceFinal">Total de votre panier:</div>
                       <!--formulaire-->
-        <form class="container" id="formulaire" method="GET" action="confirmation.html">
+        <form class="container" id="formulaire" method="post">
           <table>
-            <h1>passez commande</h1>
+            <h1>passez votre commande</h1>
             <tr class="form-group"> 
               <td><label for="nom">Nom:</label></td>
-              <td><input type="text" minlength="3" id="nom"  placeholder="nom" required pattern="[A-Za-z]+"></td>
+              <td><input type="text " name="nom " placeholder="Votre Nom " minlength="3 " id="nom" aria-label="nom"
+                class="inp" required pattern="[A-Za-z]+"></td>
             </tr>
             <tr class="form-group">
                 <td><label for="prenom">Prenom:</label></td>
-                <td><input type="text" minlength="3" id="prenom" placeholder="Prenom" required pattern="[A-Za-z]+"></td>
+                <td><input type="text" name="prenom" placeholder=" Votre Prénom " minlength="2 " id="prenom"
+                  aria-label="prénom" class="inp" required pattern="[A-Za-z]+"></td>
             </tr>
             <tr class="form-group">
                 <td><label for="adresse">Adresse:</label></td>
-                <td><input type="text" minlength="3" id="adresse" placeholder="Adresse" required></td>
+                <td><input type="text " name="adresse " placeholder="Votre Adresse " minlength="8 " id="adresse"
+                  aria-label="adresse" class="inp" required></td>
             </tr>
             <tr class="form-group">
                 <td><label for="ville">ville:</label></td>
-                <td><input type="text" id="ville" placeholder="ville"  required pattern="[A-Za-z]+"></td>
+                <td><input type="text " name="ville " placeholder="Votre Ville " minlength="1 " id="ville"
+                  aria-label="ville" class="inp" required pattern="[A-Za-z]+"></td>
             </tr>
             <tr class="form-group">
                 <td><label for="email">Email:</label></td>
-                <td><input type="email" minlength="3" id="email" placeholder="name@example.com" required></td>
+                <td><input type="email " name="email " placeholder="Votre Email " id="email" aria-label="email" class="inp"
+                  required pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+.[a-zA-Z.]{2,15}"></td>
             </tr>
             <tr>
               <div class="form-group">

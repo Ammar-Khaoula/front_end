@@ -100,7 +100,7 @@ function getOneArticle ()
                 nom: produit.name,
                 lentilles: cs.options[cs.selectedIndex].text,
                 quantiter: quantitDeProduit.value,
-                prix: produit.price / 100,                
+                prix: produit.price*quantitDeProduit.value / 100,                
             };
     //-----------------------local storage-----------------------//
     //déclarer la variable "ajoutLocalStorage" dans localstorage
