@@ -1,3 +1,4 @@
+let isPanier = true;
 let ajoutLocalStorage = JSON.parse(localStorage.getItem("produit"));
 
 //--------------AFFICHIER LE PRODUIT AU PANIER------
@@ -11,13 +12,16 @@ if(ajoutLocalStorage === null || ajoutLocalStorage == 0){
         <p> votre panier est vide</p>
     </div>
     `
-    basketArt.innerHTML = panierVide;
+    if (basketArt != null) {
+        basketArt.innerHTML = panierVide; 
+    }
+   
 }
 // si le panier n'est pas vide
 else {
     for (i = 0; i < ajoutLocalStorage.length; i++){
         panierProduit = panierProduit + `
-        <div class="photoDeProduit panier" id="basketArt">
+        <div class="photoDeProduit panier">
               <img class="image" src = ${ajoutLocalStorage[i].imageArticle} />
               <h2 class="nom">${ajoutLocalStorage[i].nom}</h2>
               <table>
@@ -29,7 +33,7 @@ else {
           </div>
         `;
     }
-        if (i == ajoutLocalStorage.length) {
+        if (i == ajoutLocalStorage.length && basketArt != null) {
             basketArt.innerHTML = panierProduit;
         }        
 }
@@ -68,21 +72,27 @@ const prixPanier = prixTotaleDePanier.reduce(reducer, 0);
 const affichePrix = `
 <div class='affochePrix'>le prix total est : ${prixPanier} €</div>
 `
-basketArt.insertAdjacentHTML("beforeend", affichePrix);
+if (basketArt != null) {
+    basketArt.insertAdjacentHTML("beforeend", affichePrix);
+}
 
-  //-----------Validation de formulaire----------
+
+ //-----------Validation de formulaire----------
 //on cible le bouton du formulaire et attache une fonction 
-document.querySelector('#formulaire').addEventListener("click", function () {
-    var valid = true;
-    for (let input of document.querySelectorAll(".form input")) {
-
-        valid &= input.reportValidity();
-        if (!valid) {
-            break;
+const formulairePanier = document.querySelector('#formulaire');
+if (formulairePanier != null) {
+    formulairePanier.addEventListener("click", function () {
+        var valid = true;
+        for (let input of document.querySelectorAll(".form input")) {
+    
+            valid &= input.reportValidity();
+            if (!valid) {
+                break;
+            }
         }
-    }
-
-});
+    
+    }); 
+}
     /*************VALIDATION FORMULAIRE******************/
 
 const lastname = document.getElementById('nom');
@@ -91,8 +101,9 @@ const address = document.getElementById('adresse');
 const city = document.getElementById('ville');
 const mail = document.getElementById('email');
 
-const form = document.querySelector("#formulaire");
-form.addEventListener("submit", (e) => {
+if (formulairePanier != null) {
+    
+ formulairePanier.addEventListener("submit", (e) => {
     e.preventDefault()
     if (ajoutLocalStorage == 0) {
         alert("votre panier est vide");
@@ -103,7 +114,7 @@ form.addEventListener("submit", (e) => {
 
         ajoutLocalStorage.forEach((camera) => {
             products.push(camera._id);
-            console.table(products)
+            console.table(products);
         });
          // utilisateur à envoyer en objet en POST
          let contact = {
@@ -124,11 +135,11 @@ form.addEventListener("submit", (e) => {
                 "Content-Type": "application/json",
             },
         };
-        console.log(donnees)
+       
          // la requête POST en elle-même
-         fetch(" https://projet5-backend.herokuapp.com/api/cameras/order", options)
+         fetch("https://projet5-backend.herokuapp.com/api/cameras/order", options)
          // reçoit les données du back
-         .then(response => { // me renvoie un premiere prommesse
+         .then(response => { 
              if (response.ok) {
                  return response.json() // Si response ok, retourne un objet json
              } else {
@@ -139,11 +150,14 @@ form.addEventListener("submit", (e) => {
          // traitement pour l'obtention du numéro de commmande
          .then((dataPost) => {
              const orderId = dataPost.orderId;
+             //--ajouter le num de commande au local storage--
+             localStorage.setItem("commandeId", orderId);
 
              if (orderId == undefined) {
                  alert("Tous les champs doivent êtres remplis")
+
              } else {
-                 window.location.href = `confirmation.html?ncomm=${orderId}`;
+                 window.location.href = 'confirmation.html';
              }
 
          })
@@ -151,6 +165,10 @@ form.addEventListener("submit", (e) => {
          .catch((error) => {
              alert(error);
          });
+
     }
 });
+}
 
+
+ 

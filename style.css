@@ -510,6 +510,61 @@ input{
         padding: 10px;
     }
 }
+        /*-------comfirmation-----*/
+.fa-check-circle{
+    color: green;
+    font-size: 60px;
+    padding-top: 30px;
+}
+#confirmer{
+    padding-top: 50px;
+    font-size: 25px;
+}
+#confirmers{
+    font-size: 18px;
+    padding-top: 40px;
+}
+#confirm{
+    font-size: 25px;
+    padding-top: 50px;
+    margin-left: 50px;
+}
+#numDeCommende{
+    font-size: 18px;
+    margin-left: 140px;
+    color: rgb(93, 8, 155);
+}
+#finalPrice{
+    font-size: 25px;
+    padding-top: 70px;
+    font-weight: bolder;
+    font-style: oblique;
+}
+#prixDeCommende{
+    color: rgb(93, 8, 155);
+    font-weight: bolder;
+}
+@media screen and (min-width: 768px) and (max-width: 997px){
+    #confirm{
+        font-size: 20px;
+        padding-top: 30px;
+    }
+    #numDeCommende{
+        font-size: 16px;
+        margin-left: 10px;
+    }
+}
+@media screen and (max-width: 768px){
+    #confirm{
+        font-size: 18px;
+        margin-left: 10px;
+    }
+    #numDeCommende{
+        font-size: 15px;
+        margin-left: 15px;
+    }
+}
+
           /*footer*/
 footer{
    background: #F3E9F1;

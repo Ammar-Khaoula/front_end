@@ -134,4 +134,9 @@ function calculPrix() {
     document.querySelector('#totalPrice').innerHTML = prixInitial * document.querySelector('#quantitDeProduit').value+" &euro;";   
 }
 
+//-------test unitaire----
+function calculPrixTest(p,q) {
+    return p * q;
+}
+
 
