@@ -17,9 +17,9 @@ structureCommande.innerHTML += `
 
 //******supprime le local storage sauf formulaire****
 
-function enleverLocalStorage(key) {
+function clearLocalStorage(key) {
     localStorage.removeItem(key);
 };
-enleverLocalStorage("produit");
-enleverLocalStorage("commandeId");
+clearLocalStorage("produit");
+clearLocalStorage("commandeId");
 

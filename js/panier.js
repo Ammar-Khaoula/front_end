@@ -155,7 +155,6 @@ function isValidOrderNumber(id) {
     return true;
 }
 
-
 function btnSuprimerArticle(locaStoragePanier) {
     // selection tous les bouton suprimer les article des pagnier
 let btn_suprimer = document.querySelectorAll(".btnSupprimer");
@@ -174,7 +173,7 @@ for (let j = 0; j < btn_suprimer.length; j++){
 function suprimerArticle(localStoragePanier, article) {
     //SELECTIONER id DE PRODUIT SUPPRIMER
     let id_selectioner = article._id;
-    //suprimer article lorsqu'on click sur btn supprimer Methode filtrer: chercher tous el qui dans localstorage 
+    //suprimer article lorsqu'on click sur btn supprimer Methode filtrer: chercher tous qui dans localstorage avec function lambda
             localStoragePanier = localStoragePanier.filter(
                 element => element._id !== id_selectioner);
     return localStoragePanier;

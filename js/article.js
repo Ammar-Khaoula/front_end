@@ -129,15 +129,17 @@ else {
 }    
 }
  //-------Fonction ajoute un produit au panier
-function getLocalStorage(data, locaStorage) {
-    let produitTmp = locaStorage.filter(element => element._id == data._id);
+function getLocalStorage(data, locaStorageArticle) {
+    let produitTmp = locaStorageArticle.filter(element => element._id == data._id);
     if (produitTmp.length !== 0) {
         data.quantiter = parseInt(data.quantiter) + parseInt(produitTmp[0].quantiter);
         data.prix = parseFloat(data.prix) + parseFloat(produitTmp[0].prix);
-        locaStorage.pop(produitTmp);
+        //locaStorage.pop(produitTmp);
+        locaStorageArticle = locaStorageArticle.filter(element => element !== produitTmp[0]);
+        console.log(locaStorageArticle);
     }
-    locaStorage.push(data);
-    return locaStorage;
+    locaStorageArticle.push(data);
+    return locaStorageArticle;
 }
 
 //-----------------calculer les prix------------
