@@ -37,54 +37,29 @@ else {
             basketArt.innerHTML = panierProduit;
         }        
 }
+btnSuprimerArticle(ajoutLocalStorage);
 
-// selection tous les bouton suprimer les article des pagnier
-let btn_suprimer = document.querySelectorAll(".btnSupprimer");
-for (let j = 0; j < btn_suprimer.length; j++){
-    btn_suprimer[j].addEventListener("click", (e) => {
-        e.preventDefault();
-//SELECTIONER id DE PRODUIT SUPPRIMER
-        let id_selectioner = ajoutLocalStorage[j]._id;
-//suprimer article lorsqu'on click sur btn supprimer Methode filtrer: chercher tous el qui dans localstorage 
-        ajoutLocalStorage = ajoutLocalStorage.filter(
-            element => element._id !== id_selectioner);
-//ENVOYER AU LOCALSTORAGE
-        localStorage.setItem("produit", JSON.stringify(ajoutLocalStorage));
-//alerte pour avertir que le produit est supprimer
-        alert("ce produit a été supprimer du panier");
-        window.location.href = "panier.html";
-    });
+//------------------function de CALCULER LES PRIX DES PRODUITS TOTALES de panier-----
+function calculePrixPanier() {
+    let totalPanier = 0;
+    for (let p = 0; p < ajoutLocalStorage.length; p++){
+        totalPanier += ajoutLocalStorage[p].prix;
+    }
+    
+    return totalPanier;
 }
-
-//------------------CALCULER LES PRIX DES PRODUITS TOTALES-----
-//déclaration de variable pour mettres les prixqui sont presente dans le panier
-let prixTotaleDePanier = [];
-//chercher les prix dans le panier
-for (let p = 0; p < ajoutLocalStorage.length; p++){
-    let prixProduitPanier = ajoutLocalStorage[p].prix;
-//metre les prix dans la variable
-    prixTotaleDePanier.push(prixProduitPanier);
-}
-//--ADITIONNER LE PRIX
-const reducer = (accumulator, currenValue) => accumulator + currenValue;
-const prixPanier = prixTotaleDePanier.reduce(reducer, 0);
 //--------AFICHIER LE PRIX SUR PAGE WEB
-const affichePrix = `
-<div class='affochePrix'>le prix total est : ${prixPanier} €</div>
-`
+const affichePrix = '<div class="affichePrix">le prix total est : '+calculePrixPanier()+' €</div>'
 if (basketArt != null) {
     basketArt.insertAdjacentHTML("beforeend", affichePrix);
 }
-
-
  //-----------Validation de formulaire----------
 //on cible le bouton du formulaire et attache une fonction 
 const formulairePanier = document.querySelector('#formulaire');
 if (formulairePanier != null) {
     formulairePanier.addEventListener("click", function () {
         var valid = true;
-        for (let input of document.querySelectorAll(".form input")) {
-    
+        for (let input of document.querySelectorAll(".form input")) {   
             valid &= input.reportValidity();
             if (!valid) {
                 break;
@@ -149,10 +124,13 @@ if (formulairePanier != null) {
 
          // traitement pour l'obtention du numéro de commmande
          .then((dataPost) => {
-             const orderId = dataPost.orderId;
+             let orderId = dataPost.orderId;
              //--ajouter le num de commande au local storage--
              localStorage.setItem("commandeId", orderId);
-
+             //orderId = 'kOUKOU';
+             if (!isValidOrderNumber(orderId)) {
+                 alert('le numéro de commande n\'est pas valide');
+            }
              if (orderId == undefined) {
                  alert("Tous les champs doivent êtres remplis")
 
@@ -170,5 +148,35 @@ if (formulairePanier != null) {
 });
 }
 
+function isValidOrderNumber(id) {
+    if (id.length != 36)
+        return false;
+    
+    return true;
+}
 
+
+function btnSuprimerArticle(locaStoragePanier) {
+    // selection tous les bouton suprimer les article des pagnier
+let btn_suprimer = document.querySelectorAll(".btnSupprimer");
+for (let j = 0; j < btn_suprimer.length; j++){
+    btn_suprimer[j].addEventListener("click", (e) => {
+        e.preventDefault();
+        locaStoragePanier = suprimerArticle(locaStoragePanier, locaStoragePanier[j]);
+//ENVOYER AU LOCALSTORAGE
+        localStorage.setItem("produit", JSON.stringify(locaStoragePanier));
+//alerte pour avertir que le produit est supprimer
+        alert("ce produit a été supprimer du panier");
+        window.location.href = "panier.html";
+    });
+}
+}
+function suprimerArticle(localStoragePanier, article) {
+    //SELECTIONER id DE PRODUIT SUPPRIMER
+    let id_selectioner = article._id;
+    //suprimer article lorsqu'on click sur btn supprimer Methode filtrer: chercher tous el qui dans localstorage 
+            localStoragePanier = localStoragePanier.filter(
+                element => element._id !== id_selectioner);
+    return localStoragePanier;
+}
  

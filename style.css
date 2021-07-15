@@ -423,7 +423,7 @@ input{
     margin-right: 50px;
     margin-top: 25px;
 }
-.affochePrix{
+.affichePrix{
     text-align: center;
     font-size: 35px;
     font-family: Arial, Helvetica, sans-serif;
@@ -469,7 +469,7 @@ input{
     height:450px ;
     padding-right: 5px;
 }
-.affochePrix{
+.affichePrix{
     font-size: 25px; 
 }
 }
