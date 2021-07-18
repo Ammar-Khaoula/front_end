@@ -177,7 +177,7 @@ header img{
     margin-bottom: 15px;
 }
 .menu-01 img:hover{
-    transform: scaleX(1.1);
+    transform: scaleX(1);
     box-shadow: 5px 5px 26px 0px rgba(46, 13, 54, 0.89);
 }
 .name{
