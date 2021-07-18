@@ -259,8 +259,7 @@ header img{
 }
 
 .image{
-    width: 430px;
-    height: 400px;
+    width: 100%;
     padding-top: 20px;
 }
 .btn2{
@@ -317,8 +316,7 @@ input{
 }
 
 .image{
-    width: 320px;
-    height: 300px;
+    width: 100%;
     padding-top: 5px;
 }
 .btn2{
@@ -339,8 +337,7 @@ input{
     }
     
     .image{
-        width: 550px;
-        height: 320px;
+        width: 100%;
         padding-top: 5px;
         padding-left: 35px;
     }
